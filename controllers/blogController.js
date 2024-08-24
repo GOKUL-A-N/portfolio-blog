@@ -55,3 +55,24 @@ export const showBlogs = async(req,res) => {
         })
     }
 }
+
+// show particular blog
+export const particularBlog = async(req,res) => {
+    try{
+
+        const blog = await blogModel.findById(req.params.id);
+
+        return res.status(200).send({
+            success: true,
+            blog
+        })        
+
+    }catch(err){
+        console.log(err);
+        return res.status(500).send({
+            success: false,
+            message: "Error displaying particular blog",
+            err,
+        })
+    }
+}
